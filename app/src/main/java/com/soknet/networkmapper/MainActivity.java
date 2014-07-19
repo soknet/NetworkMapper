@@ -2,10 +2,13 @@ package com.soknet.networkmapper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,7 +30,6 @@ public class MainActivity extends Activity {
 
         // */
 
-
         CharSequence text1 = "Hello toast! tosta rica y nada más";
         CharSequence text = Utils.getIPAddress(false); // IPv6
         int duration = Toast.LENGTH_SHORT;
@@ -35,6 +37,13 @@ public class MainActivity extends Activity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
         toast.show();
+        TextView texto = (TextView) findViewById(R.id.texto);
+
+
+        //texto.setText(Utils.getIPAddress(true));
+        ConnectivityManager redManager = ConnectivityManager(context);
+        NetworkInfo red = redManager.getActiveNetworkInfo();
+        texto.setText(red.getExtraInfo());
     }
 
 
